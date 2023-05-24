@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
 import Editor from "../components/Editor";
 
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -9,8 +11,6 @@ export default function EditPost() {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
-
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetch(`${baseUrl}/post/` + id).then((response) => {
@@ -20,7 +20,7 @@ export default function EditPost() {
         setContent(postInfo.content);
       });
     });
-  }, []);
+  }, [id]);
 
   async function updatePost(e) {
     e.preventDefault();

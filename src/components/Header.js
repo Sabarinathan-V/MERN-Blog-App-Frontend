@@ -3,10 +3,9 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
 export default function Header() {
-
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
   const { userInfo, setUserInfo } = useContext(UserContext);
   
@@ -16,7 +15,7 @@ export default function Header() {
         .then((res) => res.json())
         .then((data) => setUserInfo(data));
     }
-  }, []);
+  }, [userInfo, setUserInfo]);
 
   const logout = () => {
     // invalidate cookie

@@ -3,14 +3,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function PostPage() {
   const { id } = useParams();
 
   const { userInfo } = useContext(UserContext);
 
   const [postInfo, setPostInfo] = useState(null);
-
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetch(`${baseUrl}/post/${id}`)

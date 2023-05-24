@@ -1,10 +1,10 @@
 import Post from "../components/Post";
 import { useEffect, useState } from "react";
 
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
-
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetch(`${baseUrl}/post`)
