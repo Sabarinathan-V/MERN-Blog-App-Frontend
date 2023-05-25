@@ -3,7 +3,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
-const baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 
 export default function Header() {
 
@@ -11,7 +11,7 @@ export default function Header() {
   
   useEffect(() => {
     if (Object.keys(userInfo).length !== 0) {
-      fetch(`${baseUrl}/profile`, { credentials: "include" })
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, { credentials: "include" })
         .then((res) => res.json())
         .then((data) => setUserInfo(data));
     }
@@ -19,7 +19,7 @@ export default function Header() {
 
   const logout = () => {
     // invalidate cookie
-    fetch(`${baseUrl}/logout`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });

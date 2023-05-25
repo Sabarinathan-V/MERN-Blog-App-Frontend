@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
 import Editor from "../components/Editor";
 
-const baseUrl = process.env.REACT_APP_BACKEND_URL;
-
 export default function EditPost() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -13,7 +11,7 @@ export default function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch(`${baseUrl}/post/` + id).then((response) => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/post/` + id).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setSummary(postInfo.summary);
@@ -33,7 +31,7 @@ export default function EditPost() {
       data.set("file", files?.[0]);
     }
 
-    const response = await fetch(`${baseUrl}/post`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",

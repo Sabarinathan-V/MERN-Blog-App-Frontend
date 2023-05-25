@@ -3,8 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
-const baseUrl = process.env.REACT_APP_BACKEND_URL;
-
 export default function PostPage() {
   const { id } = useParams();
 
@@ -13,7 +11,7 @@ export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
 
   useEffect(() => {
-    fetch(`${baseUrl}/post/${id}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/post/${id}`)
       .then((response) => response.json())
       .then((data) => setPostInfo(data));
   }, [id]);
@@ -49,7 +47,7 @@ export default function PostPage() {
         </div>
       )}
       <div className="image">
-        <img src={`${baseUrl}/${postInfo.cover}`} alt=""></img>
+        <img src={`${process.env.REACT_APP_BACKEND_URL}/${postInfo.cover}`} alt=""></img>
       </div>
       <div
         className="content"

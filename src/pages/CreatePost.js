@@ -9,8 +9,6 @@ export default function CreatePost() {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
-
   const createNewPost = async (event) => {
     const data = new FormData();
     data.set("title", title);
@@ -19,7 +17,7 @@ export default function CreatePost() {
     data.set("file", files[0]);
 
     event.preventDefault();
-    const response = await fetch(`${baseUrl}/post`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/post`, {
       method: "POST",
       body: data,
       credentials: "include",
