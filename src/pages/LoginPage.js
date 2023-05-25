@@ -9,23 +9,21 @@ export default function LoginPage() {
 
   const { setUserInfo } = useContext(UserContext);
 
-  const login = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+  async function login(event) {
+    event.preventDefault();
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
-    });
-    if (response.ok) {
-      response.json().then((data) => {
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
         setUserInfo(data);
         setRedirect(true);
-      });
-    } else {
-      alert("Login failed");
-    }
-    setUsername("");
-    setPassword("");
-  };
+      })
+      .catch((error) => console.log(error));
+  }
 
   if (redirect) {
     return <Navigate to={"/"} />;
@@ -49,4 +47,4 @@ export default function LoginPage() {
       <button>Login</button>
     </form>
   );
-};
+}
