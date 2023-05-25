@@ -13,7 +13,8 @@ export default function PostPage() {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/post/${id}`)
       .then((response) => response.json())
-      .then((data) => setPostInfo(data));
+      .then((data) => setPostInfo(data))
+      .catch((err)=>console.log(err));
   }, [id]);
 
   if (!postInfo) {

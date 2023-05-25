@@ -16,7 +16,7 @@ export default function EditPost() {
         setTitle(postInfo.title);
         setSummary(postInfo.summary);
         setContent(postInfo.content);
-      });
+      }).catch((err)=>console.log(err));
     });
   }, [id]);
 
@@ -31,15 +31,11 @@ export default function EditPost() {
       data.set("file", files?.[0]);
     }
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/post`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",
-    });
-
-    if (response.ok) {
-      setRedirect(true);
-    }
+    }).then(()=>setRedirect(true)).catch((err)=>console.log(err));
   }
 
   if (redirect) {

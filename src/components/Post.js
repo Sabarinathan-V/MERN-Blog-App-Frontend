@@ -11,14 +11,11 @@ export default function Post({
   author,
   _id,
 }) {
-
-  const baseUrl = process.env.REACT_APP_BACKEND_URL;
-
   return (
     <div className="post">
       <div className="image">
         <Link to={`/post/${_id}`}>
-          <img src={`${baseUrl}/${cover}`} alt=""></img>
+          <img src={`${process.env.REACT_APP_BACKEND_URL}/${cover}`} alt=""></img>
         </Link>
       </div>
       <div className="texts">

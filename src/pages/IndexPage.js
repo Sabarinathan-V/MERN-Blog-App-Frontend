@@ -7,7 +7,8 @@ export default function IndexPage() {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/post`)
       .then((response) => response.json())
-      .then((data) => setPosts(data));
+      .then((data) => setPosts(data))
+      .catch((err)=>console.log(err));
   }, []);
 
   return (
