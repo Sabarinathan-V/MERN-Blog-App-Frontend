@@ -14,11 +14,9 @@ export default function Header() {
 
       fetch(process.env.REACT_APP_BACKEND_URL + "/profile", {credentials: 'include'})
         .then((res) => res.json())
-        .then((data) => setUserInfo(data))
         .catch((error) => console.log(error))
-
     }
-  }, [setUserInfo]);
+  }, []);
 
   const logout = () => {
     // invalidate cookie
