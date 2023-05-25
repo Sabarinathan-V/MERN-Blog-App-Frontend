@@ -9,10 +9,10 @@ export default function Header() {
 
   const { userInfo, setUserInfo } = useContext(UserContext);
   
-  useEffect(async () => {
+  useEffect(() => {
     if (Object.keys(userInfo).length !== 0) {
 
-      await fetch(process.env.REACT_APP_BACKEND_URL + "/profile", {credentials: 'include'})
+      fetch(process.env.REACT_APP_BACKEND_URL + "/profile", {credentials: 'include'})
         .then((res) => res.json())
         .then((data) => setUserInfo(data))
         .catch((error) => console.log(error))
