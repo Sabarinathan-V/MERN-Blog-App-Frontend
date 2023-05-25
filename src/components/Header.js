@@ -11,12 +11,14 @@ export default function Header() {
   
   useEffect(() => {
     if (Object.keys(userInfo).length !== 0) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/profile`, { credentials: "include" })
+
+      fetch(process.env.REACT_APP_BACKEND_URL + "/profile", {credentials: 'include'})
         .then((res) => res.json())
         .then((data) => setUserInfo(data))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+
     }
-  }, [userInfo, setUserInfo]);
+  }, []);
 
   const logout = () => {
     // invalidate cookie
