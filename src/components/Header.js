@@ -18,7 +18,7 @@ export default function Header() {
         .catch((error) => console.log(error))
 
     }
-  }, []);
+  }, [setUserInfo, userInfo]);
 
   const logout = () => {
     // invalidate cookie
