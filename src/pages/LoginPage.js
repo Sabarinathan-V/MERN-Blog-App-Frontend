@@ -14,7 +14,6 @@ export default function LoginPage() {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
     if (response.ok) {
